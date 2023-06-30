@@ -1,0 +1,15 @@
+{
+  "name": "ChollimaTasks",
+  "version": "1.0.0",
+  "main": "index.js",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "backend:start:dev": "yarn workspace @chollima/backend start:dev"
+  },
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  }
+}
