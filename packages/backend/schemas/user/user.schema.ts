@@ -1,0 +1,16 @@
+import fs from "fs";
+import path from "path";
+import { signUpResolver } from "./resolvers/signup/signup.resolver";
+
+const userTypeDefinitions = fs.readFileSync(
+  path.join(__dirname, "user.schema.graphql"),
+  "utf-8"
+);
+
+const userResolvers = {
+  Mutation: {
+    signup: signUpResolver,
+  },
+};
+
+export { userTypeDefinitions, userResolvers };

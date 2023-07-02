@@ -1,6 +1,7 @@
 import { makeExecutableSchema } from "@graphql-tools/schema";
 import fs from "fs";
 import path from "path";
+import { userResolvers, userTypeDefinitions } from "./user/user.schema";
 
 const typeDefinitions = fs.readFileSync(
   path.join(__dirname, "schema.graphql"),
@@ -14,6 +15,6 @@ const resolvers = {
 };
 
 export const schema = makeExecutableSchema({
-  resolvers: [resolvers],
-  typeDefs: [typeDefinitions],
+  resolvers: [resolvers, userResolvers],
+  typeDefs: [typeDefinitions, userTypeDefinitions],
 });
