@@ -1,7 +1,6 @@
 import { hash } from "bcryptjs";
 import { GraphQLError } from "graphql";
 import { sign } from "jsonwebtoken";
-import { userInfo } from "os";
 import { AuthPayload } from "../../../../resolvers-types";
 import { Resolver } from "../../../types";
 import { SignUpArgs } from "./signup.resolver.types";

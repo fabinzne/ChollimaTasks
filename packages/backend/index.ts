@@ -1,11 +1,12 @@
 import { createServer } from "node:http";
 import { createYoga } from "graphql-yoga";
-import { createContext } from "./context";
-import { schema } from "./schemas";
+import { createContext } from "./api/context";
+import { schema } from "./api/schemas";
 import dotenv from "dotenv";
 import path from "path";
 
 function main() {
+  dotenv.config({ path: path.resolve(__dirname, ".env") });
   const yoga = createYoga({ schema, context: createContext });
   const server = createServer(yoga);
 
@@ -14,6 +15,4 @@ function main() {
   });
 }
 
-const dotenvC = dotenv.config({ path: path.resolve(__dirname, ".env") });
-console.log({ dotenvC });
 main();
