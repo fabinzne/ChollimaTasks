@@ -1,6 +1,6 @@
 import { createServer } from "node:http";
 import { createYoga } from "graphql-yoga";
-import { createContext } from "./api/context";
+import { createContext } from "./context";
 import { schema } from "./api/schemas";
 import dotenv from "dotenv";
 import path from "path";
