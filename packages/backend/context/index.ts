@@ -1,28 +1,12 @@
 import { PrismaClient } from "@prisma/client";
+import { YogaInitialContext } from "graphql-yoga";
+import { container, GraphQLContext } from "./container";
 
-const prisma = new PrismaClient();
-
-type ApplicationEnvs = {
-  APP_SECRET: string;
-};
-
-export type GraphQLContext = {
-  prisma: PrismaClient;
-  env: ApplicationEnvs;
-};
-
-export async function createContext(): Promise<GraphQLContext> {
-  const APP_SECRET = process.env.APP_SECRET;
-  if (!APP_SECRET) {
-    throw new Error(
-      "Cannot load ENV Var = APP_SECRET please make sure you've defined environment correctly!"
-    );
-  }
-
+export async function createContext({
+  request,
+}: YogaInitialContext): Promise<GraphQLContext> {
   return {
-    prisma,
-    env: {
-      APP_SECRET,
-    },
+    ...container.cradle,
+    headers: request.headers,
   };
 }

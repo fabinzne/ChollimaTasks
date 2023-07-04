@@ -8,24 +8,12 @@ import { SignUpArgs } from "./signup.resolver.types";
 export const signUpResolver: Resolver<SignUpArgs, AuthPayload> = async (
   _,
   args,
-  context
+  { signupUseCase }
 ) => {
   try {
-    const password = await hash(args.password, 10);
+    const result = await signupUseCase.execute(args);
 
-    const user = await context.prisma.user.create({
-      data: { ...args, password },
-    });
-
-    const token = sign({ userId: user.id }, context.env.APP_SECRET);
-
-    return {
-      token,
-      user: {
-        ...user,
-        password: undefined,
-      },
-    };
+    return result;
   } catch (err) {
     const error = err as Error;
 

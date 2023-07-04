@@ -1,4 +1,4 @@
-import { GraphQLContext } from "../../context";
+import { GraphQLContext } from "../../context/container";
 
 export type Resolver<Args, Result> = (
   parent: unknown,
