@@ -6,7 +6,7 @@ import { SignUpArgs } from "./signup.resolver.types";
 export const signUpResolver: Resolver<SignUpArgs, AuthPayload> = async (
   _,
   args,
-  { signupUseCase, ...context }
+  { signupUseCase }
 ) => {
   try {
     const result = await signupUseCase.execute(args);
