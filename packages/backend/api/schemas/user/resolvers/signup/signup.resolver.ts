@@ -1,6 +1,4 @@
-import { hash } from "bcryptjs";
 import { GraphQLError } from "graphql";
-import { sign } from "jsonwebtoken";
 import { AuthPayload } from "../../../../resolvers-types";
 import { Resolver } from "../../../types";
 import { SignUpArgs } from "./signup.resolver.types";
@@ -8,7 +6,7 @@ import { SignUpArgs } from "./signup.resolver.types";
 export const signUpResolver: Resolver<SignUpArgs, AuthPayload> = async (
   _,
   args,
-  { signupUseCase }
+  { signupUseCase, ...context }
 ) => {
   try {
     const result = await signupUseCase.execute(args);

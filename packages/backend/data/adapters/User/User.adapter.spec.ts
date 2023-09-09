@@ -1,1 +1,0 @@
-describe("UserAdapter unit tests", () => {});

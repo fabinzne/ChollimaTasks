@@ -1,7 +1,22 @@
 import { signUpResolver } from "./signup.resolver";
+import { container } from "../../../../../context/container";
+import { asValue } from "awilix";
 
 describe("SignUp Resolver - Unit Tests", () => {
   it("Should return the token and user created", async () => {
+    container.register({
+      prisma: asValue({
+        user: {
+          create: jest.fn().mockResolvedValue({
+            id: "1e12312cvm23214_2",
+            password: "123",
+            name: "John Dee",
+            email: "example@email.com",
+          }),
+        } as any,
+      }) as any,
+    });
+
     const authPayload = await signUpResolver(
       {},
       {
@@ -10,20 +25,8 @@ describe("SignUp Resolver - Unit Tests", () => {
         password: "123",
       },
       {
-        prisma: {
-          user: {
-            create: jest.fn().mockResolvedValue({
-              id: "1e12312cvm23214_2",
-              password: "123",
-              name: "John Dee",
-              email: "example@email.com",
-            }),
-          },
-        } as any,
-        env: {
-          APP_SECRET: "example_secret",
-        },
-      }
+        ...container.cradle,
+      } as any
     );
 
     expect(authPayload).toStrictEqual({
@@ -32,7 +35,6 @@ describe("SignUp Resolver - Unit Tests", () => {
         email: "example@email.com",
         id: "1e12312cvm23214_2",
         name: "John Dee",
-        password: undefined,
       },
     });
   });

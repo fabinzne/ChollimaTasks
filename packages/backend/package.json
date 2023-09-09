@@ -4,9 +4,11 @@
   "main": "index.ts",
   "license": "MIT",
   "scripts": {
-    "start:dev": "tsnd --respawn index.ts"
+    "start:dev": "tsnd --respawn index.ts",
+    "test": "jest"
   },
   "dependencies": {
+    "@graphql-tools/executor-http": "^1.0.2",
     "@prisma/client": "4.16.2",
     "awilix": "^8.0.1",
     "bcryptjs": "2.4.3",
