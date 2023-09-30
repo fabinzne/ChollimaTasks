@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "start:dev": "tsnd --respawn index.ts",
-    "test": "jest"
+    "test": "jest",
+    "docker-compose-up:dev": "docker compose up -d"
   },
   "dependencies": {
     "@graphql-tools/executor-http": "^1.0.2",

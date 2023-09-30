@@ -1,7 +1,6 @@
 import { UserEntity, UserOutput } from "../../entities/User.entity";
 
 export type SignUpUseCaseOutput = {
-  user: UserOutput;
   token: string;
 };
 

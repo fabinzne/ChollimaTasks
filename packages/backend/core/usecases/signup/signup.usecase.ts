@@ -4,11 +4,13 @@ import { UserEntity } from "../../entities/User.entity";
 import { EnvironmentPort } from "../../ports/Environment.port";
 import { UserPort } from "../../ports/User.port";
 import { ISignUpUseCase } from "./signup.usecase.types";
+import { JsonWebTokenPort } from "../../ports/JsonWebToken.port";
 
 export class SignUpUseCase implements ISignUpUseCase {
   constructor(
     private readonly userRepository: UserPort,
-    private readonly environment: EnvironmentPort
+    private readonly environment: EnvironmentPort,
+    private readonly jsonwerbtoken: JsonWebTokenPort
   ) {}
 
   public async execute(user: UserEntity) {
@@ -20,14 +22,12 @@ export class SignUpUseCase implements ISignUpUseCase {
       password,
     });
 
-    // TODO: Create an abstraction for jsonwebtoken in the future if it's necessary
-    const token = sign(
+    const token = this.jsonwerbtoken.sign(
       { userId: createdUser.id },
       this.environment.getEnvByName("APP_SECRET")
     );
 
     return {
-      user: createdUser,
       token,
     };
   }

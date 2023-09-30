@@ -14,7 +14,6 @@ export const signUpResolver: Resolver<SignUpArgs, AuthPayload> = async (
     return result;
   } catch (err) {
     const error = err as Error;
-
     throw new GraphQLError(error.message);
   }
 };

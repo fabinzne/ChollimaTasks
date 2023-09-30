@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "backend:start:dev": "yarn workspace @chollima/backend start:dev",
-    "backend:test": "jest --selectProjects=backend --watchAll --no-cache"
+    "backend:test": "jest --selectProjects=backend --watchAll --no-cache",
+    "backend:docker-compose-up:dev": "yarn workspace @chollima/backend docker-compose-up:dev"
   },
   "devDependencies": {
     "@types/jest": "^29.5.2",

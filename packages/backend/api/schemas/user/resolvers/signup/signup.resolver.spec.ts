@@ -15,6 +15,9 @@ describe("SignUp Resolver - Unit Tests", () => {
           }),
         } as any,
       }) as any,
+      environment: asValue({
+        getEnvByName: jest.fn().mockReturnValue("BLABLABLA"),
+      }),
     });
 
     const authPayload = await signUpResolver(
@@ -31,11 +34,6 @@ describe("SignUp Resolver - Unit Tests", () => {
 
     expect(authPayload).toStrictEqual({
       token: expect.any(String),
-      user: {
-        email: "example@email.com",
-        id: "1e12312cvm23214_2",
-        name: "John Dee",
-      },
     });
   });
 });
