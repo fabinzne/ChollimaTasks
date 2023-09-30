@@ -9,7 +9,7 @@ export class SignUpUseCase implements ISignUpUseCase {
   constructor(
     private readonly userRepository: UserPort,
     private readonly environment: EnvironmentPort,
-    private readonly jsonwerbtoken: JsonWebTokenPort,
+    private readonly jsonwebtoken: JsonWebTokenPort,
     private readonly bcrypt: BcryptPort
   ) {}
 
@@ -21,7 +21,7 @@ export class SignUpUseCase implements ISignUpUseCase {
       password,
     });
 
-    const token = this.jsonwerbtoken.sign(
+    const token = this.jsonwebtoken.sign(
       { userId: createdUser.id },
       this.environment.getEnvByName("APP_SECRET")
     );

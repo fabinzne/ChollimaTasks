@@ -7,7 +7,7 @@ module.exports = {
       preset: "ts-jest",
       testEnvironment: "node",
       displayName: backendPkg.name,
-      testMatch: ["<rootDir>/packages/backend/**/*.spec.ts"],
+      testMatch: ["<rootDir>/packages/backend/**/**.spec.ts"],
     },
   ],
 };

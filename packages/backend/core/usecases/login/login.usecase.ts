@@ -7,7 +7,7 @@ import { BcryptPort } from "../../ports/Bcrypt.port";
 export class LoginUsecase implements ILoginUseCase {
   constructor(
     private readonly userRepository: UserPort,
-    private readonly jsonWebToken: JsonWebTokenPort,
+    private readonly jsonwebtoken: JsonWebTokenPort,
     private readonly environment: EnvironmentPort,
     private readonly bcrypt: BcryptPort
   ) {}
@@ -21,7 +21,7 @@ export class LoginUsecase implements ILoginUseCase {
       throw new Error("User is not authorized.");
     }
 
-    const token = this.jsonWebToken.sign(
+    const token = this.jsonwebtoken.sign(
       {
         userId: user.id,
       },

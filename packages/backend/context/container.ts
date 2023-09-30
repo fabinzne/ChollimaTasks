@@ -5,14 +5,16 @@ import { EnvironmentAdapter } from "../data/adapters/Environment/Enviroment.adap
 import { UserAdapter } from "../data/adapters/User/User.adapter";
 import { JsonWebToken } from "../data/adapters/JsonWebToken/JsonWebToken.adapter";
 import { LoginUsecase } from "../core/usecases/login/login.usecase";
+import { BCryptAdapter } from "../data/adapters/Bcrypt/Bcrypt.adapter";
 
 export type GraphQLContext = {
   prisma: PrismaClient;
   userRepository: UserAdapter;
   signupUseCase: SignUpUseCase;
   environment: EnvironmentAdapter;
+  bcrypt: BCryptAdapter;
   headers: Headers;
-  jsonWebToken: JsonWebToken;
+  jsonwebtoken: JsonWebToken;
   loginUsecase: LoginUsecase;
 };
 
@@ -25,8 +27,9 @@ container.register({
   userRepository: asClass(UserAdapter).scoped(),
   signupUseCase: asClass(SignUpUseCase).scoped(),
   environment: asClass(EnvironmentAdapter).scoped(),
-  jsonWebToken: asClass(JsonWebToken).scoped(),
+  jsonwebtoken: asClass(JsonWebToken).scoped(),
   loginUsecase: asClass(LoginUsecase).scoped(),
+  bcrypt: asClass(BCryptAdapter).scoped(),
 });
 
 export { container };
